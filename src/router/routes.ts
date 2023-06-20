@@ -2,6 +2,11 @@ import { RouteRecordRaw } from 'vue-router';
 
 const routes: RouteRecordRaw[] = [
   {
+    path: '/login',
+    component: () => import('../layouts/LoginLayout.vue'),
+  },
+
+  {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
@@ -11,10 +16,6 @@ const routes: RouteRecordRaw[] = [
         component: () => import('../pages/RedacoesPage.vue'),
       },
     ],
-  },
-  {
-    path: '/login',
-    component: () => import('layouts/LoginLayout.vue'),
   },
 
   // Always leave this as last one,

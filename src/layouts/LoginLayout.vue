@@ -12,29 +12,33 @@
             color="pink-10"
             filled
             v-model="name"
-            label="Your name *"
+            label="Seu nome *"
             hint="Name and surname"
             lazy-rules
             :rules="nameRules"
           />
 
           <q-input
-            ref="nameRef"
-            color="pink-10"
+            v-model="password"
             filled
-            v-model="name"
-            label="Your name *"
-            hint="Name and surname"
-            lazy-rules
-            :rules="nameRules"
-          />
+            :type="isPwd ? 'password' : 'text'"
+            hint="Password with toggle"
+          >
+            <template v-slot:append>
+              <q-icon
+                :name="isPwd ? 'visibility_off' : 'visibility'"
+                class="cursor-pointer"
+                @click="isPwd = !isPwd"
+              />
+            </template>
+          </q-input>
 
           <div class="q-pl-xl">
             <q-btn label="Submit" type="submit" color="grey-9" />
             <q-btn
               label="Reset"
               type="reset"
-              color="green-1"
+              color="green-6"
               flat
               class="q-ml-sm"
             />
@@ -45,23 +49,25 @@
   </body>
 </template>
 
-<script>
-export default {};
+<script setup>
+import { ref } from 'vue';
+
+const isPwd = ref(true);
 </script>
 
 <style scope lang="scss">
 $cor: $dark;
 $verde-9: $teal-9;
 $segundo: $secondary;
-$grey-6: $grey-6;
-$grey-7: $grey-7;
-$grey-8: $grey-8;
+$grey-1: $grey-1;
+$grey-3: $grey-3;
+$grey-4: $grey-4;
 $grey-9: $grey-9;
 $grey-10: $grey-10;
 .my-body {
   width: 100%;
   height: 100vh;
-  background: linear-gradient(120deg, $grey-9, $grey-10, $cor);
+  background: linear-gradient(120deg, $grey-1, $grey-3, $grey-4);
 }
 
 .area-login {
