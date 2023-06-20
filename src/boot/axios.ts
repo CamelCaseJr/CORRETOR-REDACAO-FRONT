@@ -15,6 +15,19 @@ declare module '@vue/runtime-core' {
 // for each client)
 const api = axios.create({ baseURL: 'https://api.example.com' });
 
+api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response.status === 401) {
+      window.location.href =
+        window.location.protocol + '//' + window.location.host + '/login';
+    }
+    return Promise.reject(error);
+  }
+);
+
 export default boot(({ app }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api
 
